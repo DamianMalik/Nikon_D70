@@ -7,7 +7,9 @@ Die Nikon D70 Kamera speichert die Bildinformationen aus den Manuellen Programme
 
 Dieses Bash-Skript ermittelt die wichtigsten EXIF-Bildinformationen der NIKON D70 aus den TAGs SceneCaptureType, VariProgram und ExposureProgram und fügt sie im Beschreibungs-TAG zusammen. Die wichtigsten Bildeigenschaften sind dann für den Betrachter auf einen Blick sichtbar. Damit kann der Fotograf alle seine Fotos schneller analysieren. 
 
+
 **Beispiel:**
+
 Vor dem Skriptdurchlauf werden in einem Bild-Betrachtungsprogramm nur wenige Bild-Details angezeigt: 
 ![Foto vor dem Skript:](https://private-user-images.githubusercontent.com/31533791/394446242-3577dfe5-4202-4c5e-a834-eed7c26025e2.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzM4NjMzMzEsIm5iZiI6MTczMzg2MzAzMSwicGF0aCI6Ii8zMTUzMzc5MS8zOTQ0NDYyNDItMzU3N2RmZTUtNDIwMi00YzVlLWE4MzQtZWVkN2MyNjAyNWUyLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjEwVDIwMzcxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTQyZWE1NGQxYTlkNjI3ZGNjM2I4Y2JiODZjNzg3NDJmZWQyNDU5MDcyODg3Mjk0NjJmNzA2N2FjNTVhYjU1NDMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.CvtGwkBJht_aVUBcmwUBwzwScOhqCUDoz1cx0su-3lE)
 
