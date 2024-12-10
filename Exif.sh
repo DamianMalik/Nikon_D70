@@ -105,9 +105,9 @@ exiftool -overwrite_original '-iso<$ISO' -if '$model eq "NIKON D70"' *.JPG
 
 # Name des Autors einfügen
 echo "Name des Autors einfügen"
-exiftool -overwrite_original '-author=Damian Malik' -if '$model eq "NIKON D70"' *.JPG
+exiftool -overwrite_original '-author=Dein Name' -if '$model eq "NIKON D70"' *.JPG
 
 # Copyright hinzufügen (muss in zwei TAGs eingefügt werden): 
 echo "Copyright Name einfügen"
-exiftool -overwrite_original '-copyright=Damian Malik'  *.JPG
-exiftool -overwrite_original '-rights=Damian Malik'  *.JPG
+exiftool -overwrite_original '-copyright=Dein Name'  *.JPG
+exiftool -overwrite_original '-rights=Dein Name'  *.JPG
