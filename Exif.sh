@@ -32,3 +32,82 @@ exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Mess
 echo "AF-Punkt ermitteln"
 exiftool -overwrite_original -lang de -E '-description<$description&#xD;• AF-Punkt: $Nikon:AFpoint' -if '$model eq "NIKON D70"' *.JPG
 
+# Blitz-Belichtungskorrektur 
+echo "Blitz-Belichtungskorrektur ermitteln"
+for file in *.JPG; do
+echo "$file"
+if [ "$(exiftool -n -p '$model' $file)" == "NIKON D70" ]; then
+	echo "Nikon D70 gefunden"
+	if [ "$(exiftool -n -p '$Nikon:FlashMode' $file)" == "9" ]; then 
+		echo "FlashMode Blitz =9 gefunden" 
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "1" ]; then
+			echo 'Schreibe "+1,0" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: +1,0' "$file" 
+		fi
+		
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "0.666666666666667" ]; then
+			echo 'Schreibe "+0,7" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: +0,7' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "0.333333333333333" ]; then
+			echo 'Schreibe "+0,3" in die Beschreibung der Datei, wenn Blitz ausgelöst hat'
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: +0,3' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "0" ]; then
+			echo 'Schreibe "+/-0" in die Beschreibung der Datei, wenn Blitz ausgelöst hat'
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: +/- 0' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-0.333333333333333" ]; then
+			echo 'Schreibe "-0,3" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -0,3' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-0.666666666666667" ]; then
+			echo 'Schreibe "-0,7" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -0,7' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-1" ]; then
+			echo 'Schreibe "-1,0" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -1,0' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-1.33333333333333" ]; then
+			echo 'Schreibe "-1,3" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -1,3' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-1.66666666666667" ]; then
+			echo 'Schreibe "-1,7" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -1,7' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-2" ]; then
+			echo 'Schreibe "-2,0" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -2,0' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-2.33333333333333" ]; then
+			echo 'Schreibe "-2,3" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -2,3' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-2.66666666666667" ]; then
+			echo 'Schreibe "-2,7" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -2,7' "$file" 
+		fi
+		if [ "$(exiftool -n -p '$Nikon:FlashExposureComp' $file)" == "-3" ]; then
+			echo 'Schreibe "-3,0" in die Beschreibung der Datei, wenn Blitz ausgelöst hat' 
+			exiftool -overwrite_original -lang de -E '-description<$description&#xD;• Blitz-Belichtungskorrektur: -3,0' "$file" 
+		fi
+	fi
+fi
+done
+
+
+# ISO Wert ermitteln und in neuen TAG schreiben 
+echo "ISO Wert in anderen TAG eintragen"
+exiftool -overwrite_original '-iso<$ISO' -if '$model eq "NIKON D70"' *.JPG 
+
+
+# Name des Autors einfügen
+echo "Name des Autors einfügen"
+exiftool -overwrite_original '-author=Damian Malik' -if '$model eq "NIKON D70"' *.JPG
+
+# Copyright hinzufügen (muss in zwei TAGs eingefügt werden): 
+echo "Copyright Name einfügen"
+exiftool -overwrite_original '-copyright=Damian Malik'  *.JPG
+exiftool -overwrite_original '-rights=Damian Malik'  *.JPG
